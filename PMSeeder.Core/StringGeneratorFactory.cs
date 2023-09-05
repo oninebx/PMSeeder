@@ -12,10 +12,12 @@ namespace PMSeeder.Core
 {
 	public class StringGeneratorFactory : IGeneratorFactory<string>
 	{
-        private IDictionary<string, IGenerator<string>> _cache;
-		public StringGeneratorFactory()
+        private readonly IDictionary<string, IGenerator<string>> _cache;
+        private readonly IGeneratorConfiguration _config;
+		public StringGeneratorFactory(IGeneratorConfiguration config)
 		{
             _cache = new Dictionary<string, IGenerator<string>>();
+            _config = config;
 		}
 
         public G Create<G>() where G : IGenerator<string>
@@ -29,7 +31,7 @@ namespace PMSeeder.Core
             }
             else
             {
-                generator = (IGenerator<string>?)Activator.CreateInstance(generatorType);
+                generator = (IGenerator<string>?)Activator.CreateInstance(generatorType, new object[] { _config });
                 if(generator != null)
                 {
                     _cache.Add(key, generator);
