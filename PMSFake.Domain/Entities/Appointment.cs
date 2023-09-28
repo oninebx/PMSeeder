@@ -1,4 +1,4 @@
-﻿// /Users/ryanxu/Projects/PMSeeder/PMSeeder.Domain/Entities/Appointment.cs
+﻿// /Users/ryanxu/Projects/PMSFake/PMSFake.Domain/Entities/Appointment.cs
 // Author: 	ryanxu
 // Email:	hitxcl@gmail.com
 // Date Created: 3/09/2023
@@ -8,12 +8,13 @@
 //
 //
 using System;
-using PMSeeder.Core;
+using PMSFake.Core;
 
-namespace PMSeeder.Domain.Entities
+namespace PMSFake.Domain.Entities
 {
 	public class Appointment : IEntity
 	{
+
 		public Appointment()
 		{
 		}

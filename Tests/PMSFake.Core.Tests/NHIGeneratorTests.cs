@@ -12,7 +12,7 @@ public class NHIGeneratorTests
     {
         // Arrange
         var config = new Mock<IGeneratorConfiguration>();
-        config.Setup(c => c.SupportNewNHIFormat).Returns(supportNew);
+        config.Setup(c => c.IsNewFormat).Returns(supportNew);
         var generator = new NHIGenerator(config.Object);
 
         // Act
@@ -29,7 +29,7 @@ public class NHIGeneratorTests
     {
         // Arrange
         var config = new Mock<IGeneratorConfiguration>();
-        config.Setup(c => c.SupportNewNHIFormat).Returns(supportNew);
+        config.Setup(c => c.IsNewFormat).Returns(supportNew);
         var generator = new NHIGenerator(config.Object);
 
         // Act
@@ -46,7 +46,7 @@ public class NHIGeneratorTests
     {
         // Arrange
         var config = new Mock<IGeneratorConfiguration>();
-        config.Setup(c => c.SupportNewNHIFormat).Returns(supportNew);
+        config.Setup(c => c.IsNewFormat).Returns(supportNew);
         var generator = new NHIGenerator(config.Object);
 
         // Act
@@ -63,7 +63,7 @@ public class NHIGeneratorTests
     {
         // Arrange
         var config = new Mock<IGeneratorConfiguration>();
-        config.Setup(c => c.SupportNewNHIFormat).Returns(supportNew);
+        config.Setup(c => c.IsNewFormat).Returns(supportNew);
         var generator = new NHIGenerator(config.Object);
 
         // Act
@@ -78,7 +78,7 @@ public class NHIGeneratorTests
     {
         // Arrange
         var config = new Mock<IGeneratorConfiguration>();
-        config.Setup(c => c.SupportNewNHIFormat).Returns(false);
+        config.Setup(c => c.IsNewFormat).Returns(false);
         var generator = new NHIGenerator(config.Object);
 
         // Act
@@ -88,16 +88,18 @@ public class NHIGeneratorTests
         Assert.Contains(actual, c => char.IsNumber(c));
     }
 
-    [Fact]
-    public void Generate_OldNHI_ReturnStringWith7thCharacterBeingCheckSum()
+    [Theory]
+    [InlineData(false, 11)]
+    [InlineData(true, 23)]
+    public void Generate_OldNHI_ReturnStringWith7thCharacterBeingCheckSum(bool isNewFormat, int divider)
     {
         // Arrange
         var config = new Mock<IGeneratorConfiguration>();
-        config.Setup(c => c.SupportNewNHIFormat).Returns(false);
+        config.Setup(c => c.IsNewFormat).Returns(isNewFormat);
         var generator = new NHIGenerator(config.Object);
         var nhi = generator.Generate();
         const string validNhiChars = "ABCDEFGHJKLMNPQRSTUVWXYZ";
-        int expected = (int)char.GetNumericValue(nhi[6]);
+        var expected = nhi[6].ToString();
 
         // Act
 
@@ -115,10 +117,27 @@ public class NHIGeneratorTests
             }
             counter--;
         }
-        int actual = 11 - result % 11;
-        actual = actual == 10 ? 0 : actual;
+        int checkSum = divider - result % divider;
+        var actual = isNewFormat ? validNhiChars[checkSum].ToString() : checkSum.ToString();
+        actual = actual == "10" ? "0" : actual;
 
         // Assert
         Assert.Equal(expected, actual);
     }
+
+    [Fact]
+    public void Generate_NewNHI_ReturnStringWith6th7thCharactersBeingLetters()
+    {
+        // Arrange
+        var config = new Mock<IGeneratorConfiguration>();
+        config.Setup(c => c.IsNewFormat).Returns(true);
+        var generator = new NHIGenerator(config.Object);
+
+        // Act
+        var actual = generator.Generate().Substring(5, 2).AsEnumerable();
+
+        // Assert
+        Assert.Contains(actual, c => char.IsUpper(c));
+    }
+
 }

@@ -1,28 +1,29 @@
 ﻿// ${CopyrightHolder}
-// /Users/ryanxu/Projects/PMSeeder/PMSeeder.Core/NHIGenerator.cs
+// /Users/ryanxu/Projects/PMSFake/PMSFake.Core/NHIGenerator.cs
 // Author: 	ryanxu
 // Email:	hitxcl@gmail.com
 // Date Created: 2/09/2023
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using PMSFake.Core;
 
-namespace PMSeeder.Core
+namespace PMSFake.Domain.Generators
 {
 	public class NHIGenerator : IGenerator<string>
 	{
         private readonly Random _random = new Random();
-        private bool _supportNewFormat;
+        private bool _isNewFormat;
+        private const string VALIDLETTERS = "ABCDEFGHJKLMNPQRSTUVWXYZ";
         public NHIGenerator(IGeneratorConfiguration config)
 		{
-            _supportNewFormat = config.SupportNewNHIFormat;
+            _isNewFormat = config.IsNewFormat;
 		}
 
         public string Generate()
         {
             // Define the characters for the first three letters (excluding I and O)
-            const string letters = "ABCDEFGHJKLMNPQRSTUVWXYZ";
-            var isNewFormat = _supportNewFormat ? _random.Next(2) == 0 : false;
+            //var isNewFormat = _supportNewFormat ? _random.Next(2) == 0 : false;
             StringBuilder nhiBuilder = new StringBuilder();
             int remain;
             do
@@ -31,17 +32,17 @@ namespace PMSeeder.Core
                 // Generate the first three letters randomly
                 for (int i = 0; i < 3; i++)
                 {
-                    int randomIndex = _random.Next(letters.Length);
-                    nhiBuilder.Append(letters[randomIndex]);
+                    int randomIndex = _random.Next(VALIDLETTERS.Length);
+                    nhiBuilder.Append(VALIDLETTERS[randomIndex]);
                 }
 
                 // Generate the following 2(new format) or 4(old format) digits randomly
-                int randomNumber = isNewFormat ? _random.Next(10, 100) : _random.Next(100, 1000);
+                int randomNumber = _isNewFormat ? _random.Next(10, 100) : _random.Next(100, 1000);
                 nhiBuilder.Append(randomNumber.ToString());
 
-                if (isNewFormat)
+                if (_isNewFormat)
                 {
-                    nhiBuilder.Append(letters[_random.Next(letters.Length)]);
+                    nhiBuilder.Append(VALIDLETTERS[_random.Next(VALIDLETTERS.Length)]);
                 }
 
                 // Compute checksum as the last character according to the generated ones.
@@ -52,7 +53,7 @@ namespace PMSeeder.Core
                     var character = toCheck[7 - i];
                     if (IsEnglishLetter(character))
                     {
-                        sum += (letters.IndexOf(character) + 1) * i;
+                        sum += (VALIDLETTERS.IndexOf(character) + 1) * i;
                     }
                     else
                     {
@@ -60,11 +61,11 @@ namespace PMSeeder.Core
                     }
                 }
 
-                remain = isNewFormat ? sum % 23 : sum % 11;
+                remain = _isNewFormat ? sum % 23 : sum % 11;
             } while (remain == 0);
 
             
-            nhiBuilder.Append(isNewFormat ? letters[(23 - remain)].ToString() : 11 - remain == 10 ? 0 : 11 - remain);
+            nhiBuilder.Append(_isNewFormat ? VALIDLETTERS[(23 - remain)].ToString() : 11 - remain == 10 ? 0 : 11 - remain);
             return nhiBuilder.ToString();
 
         }

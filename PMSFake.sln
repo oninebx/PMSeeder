@@ -3,18 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1706.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMSeeder", "PMSeeder\PMSeeder.csproj", "{BAFD1249-F981-4A5D-A61D-B772A21673CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMSFake", "PMSFake\PMSFake.csproj", "{BAFD1249-F981-4A5D-A61D-B772A21673CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMSeeder.Domain", "PMSeeder.Domain\PMSeeder.Domain.csproj", "{C3CBDC93-16AA-4ABB-9C2C-BC4C787BEAC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMSFake.Domain", "PMSFake.Domain\PMSFake.Domain.csproj", "{C3CBDC93-16AA-4ABB-9C2C-BC4C787BEAC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMSeeder.Core", "PMSeeder.Core\PMSeeder.Core.csproj", "{42547D03-936B-42D0-95DA-65FE494C3E8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMSFake.Core", "PMSFake.Core\PMSFake.Core.csproj", "{42547D03-936B-42D0-95DA-65FE494C3E8E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2F83D4CF-FACE-4947-96BB-F9794894F60F}"
 	ProjectSection(SolutionItems) = preProject
 		README.mk = README.mk
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMSeeder.Core.Tests", "Tests\PMSeeder.Core.Tests\PMSeeder.Core.Tests.csproj", "{AA8E2A95-C7AC-4492-92CE-B0DD42BB12FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMSFake.Core.Tests", "Tests\PMSFake.Core.Tests\PMSFake.Core.Tests.csproj", "{AA8E2A95-C7AC-4492-92CE-B0DD42BB12FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMSFake.Data", "PMSFake.Data\PMSFake.Data.csproj", "{A4DBF503-D37B-4BBC-8E20-B432D45082CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{AA8E2A95-C7AC-4492-92CE-B0DD42BB12FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA8E2A95-C7AC-4492-92CE-B0DD42BB12FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA8E2A95-C7AC-4492-92CE-B0DD42BB12FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4DBF503-D37B-4BBC-8E20-B432D45082CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4DBF503-D37B-4BBC-8E20-B432D45082CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4DBF503-D37B-4BBC-8E20-B432D45082CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4DBF503-D37B-4BBC-8E20-B432D45082CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

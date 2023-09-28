@@ -1,4 +1,4 @@
-﻿// /Users/ryanxu/Projects/PMSeeder/PMSeeder.Core/GeneratorGroup.cs
+﻿// /Users/ryanxu/Projects/PMSFake/PMSFake.Core/GeneratorGroup.cs
 // Author: 	ryanxu
 // Email:	hitxcl@gmail.com
 // Date Created: 2/09/2023
@@ -9,7 +9,7 @@
 //
 using System;
 
-namespace PMSeeder.Core
+namespace PMSFake.Core
 {
 	public abstract class GeneratorGroup<E> : IGenerator<E> where E : IEntity
 	{

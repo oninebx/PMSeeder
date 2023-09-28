@@ -1,4 +1,4 @@
-﻿// /Users/ryanxu/Projects/PMSeeder/PMSeeder.Core/IGeneratorFactory.cs
+﻿// /Users/ryanxu/Projects/PMSFake/PMSFake.Core/IGeneratorFactory.cs
 // Author: 	ryanxu
 // Email:	hitxcl@gmail.com
 // Date Created: 2/09/2023
@@ -8,7 +8,7 @@
 //
 //
 using System;
-namespace PMSeeder.Core
+namespace PMSFake.Core
 {
 	public interface IGeneratorFactory<T>
 	{

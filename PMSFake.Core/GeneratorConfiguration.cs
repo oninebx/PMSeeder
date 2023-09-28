@@ -1,4 +1,4 @@
-﻿// /Users/ryanxu/Projects/PMSeeder/PMSeeder.Core/GeneratorConfiguration.cs
+﻿// /Users/ryanxu/Projects/PMSFake/PMSFake.Core/GeneratorConfiguration.cs
 // Author: 	ryanxu
 // Email:	hitxcl@gmail.com
 // Date Created: 4/09/2023
@@ -8,11 +8,11 @@
 //
 //
 using System;
-namespace PMSeeder.Core
+namespace PMSFake.Core
 {
 	public class GeneratorConfiguration : IGeneratorConfiguration
 	{
-		public bool SupportNewNHIFormat { get; set; }
+		public bool IsNewFormat { get; set; }
 
 		public GeneratorConfiguration()
 		{

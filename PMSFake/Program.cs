@@ -2,8 +2,8 @@
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PMSeeder.Core;
-using PMSeeder.Domain;
+using PMSFake.Core;
+using PMSFake.Domain;
 
 var builder = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", optional: false);
@@ -18,10 +18,23 @@ var services = new ServiceCollection()
 Console.WriteLine("Welcome to HealthSeeder!");
 var domainGeneratorFactory = services.GetRequiredService<IDomainGeneratorFactory>();
 var patientGenerator = domainGeneratorFactory.CreatePatientGenerator();
-while ("P".Equals(Console.ReadLine()))
+
+// var appointmentGenerator = domainGeneratorFactory.CreateAppointmentGenerator();
+while (!string.IsNullOrEmpty(Console.ReadLine()))
 {
-    var patient = patientGenerator.Generate();
-    Console.WriteLine(patient.NHI);
+    var input = Console.ReadLine()?.Trim();
+    if ("P".Equals(input))
+    {
+        //var patient = patientGenerator.Generate();
+        var patient = patientGenerator.Generate();
+        Console.WriteLine(patient.NHI);
+    }
+    // if ("A".Equals(input))
+    // {
+    //     var appointment = appointmentGenerator.Generate();
+    //     Console.WriteLine(appointment);
+    // }
+    
 }
 
 

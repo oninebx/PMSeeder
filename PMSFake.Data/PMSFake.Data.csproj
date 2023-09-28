@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PMSeeder.Core\PMSeeder.Core.csproj" />
+    <None Remove="NZ\" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Entities\" />
+    <Folder Include="NZ\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
+    <None Update="NZ\Cities.seed">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

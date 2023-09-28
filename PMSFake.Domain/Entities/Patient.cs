@@ -1,4 +1,4 @@
-﻿// /Users/ryanxu/Projects/PMSeeder/PMSeeder.Domain/Entities/Patient.cs
+﻿// /Users/ryanxu/Projects/PMSFake/PMSFake.Domain/Entities/Patient.cs
 // Author: 	ryanxu
 // Email:	hitxcl@gmail.com
 // Date Created: 2/09/2023
@@ -8,9 +8,9 @@
 //
 //
 using System;
-using PMSeeder.Core;
+using PMSFake.Core;
 
-namespace PMSeeder.Domain.Entities
+namespace PMSFake.Domain.Entities
 {
 	public class Patient : IEntity
 	{

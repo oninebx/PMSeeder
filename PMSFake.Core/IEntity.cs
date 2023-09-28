@@ -1,4 +1,4 @@
-﻿// /Users/ryanxu/Projects/PMSeeder/PMSeeder.Domain/Entities/IEntity.cs
+﻿// /Users/ryanxu/Projects/PMSFake/PMSFake.Domain/Entities/IEntity.cs
 // Author: 	ryanxu
 // Email:	hitxcl@gmail.com
 // Date Created: 3/09/2023
@@ -8,7 +8,7 @@
 //
 //
 using System;
-namespace PMSeeder.Core
+namespace PMSFake.Core
 {
 	public interface IEntity
 	{
